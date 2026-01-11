@@ -1,106 +1,90 @@
-const API_BASE_URL = 'http://localhost:8080/api/v1/bookings';
+const API_BASE_URL = `${import.meta.env.VITE_API_URL || 'https://bookgarnus-api.onrender.com'}/api/v1/bookings`;
 
-
-const handleResponse = async (response) => {
-
-  if (!response.ok) {
-
-    let errorMessage = `Server error: ${response.status}`;
-    try {
-      const errorData = await response.json();
-      errorMessage = errorData.error || errorData.message || errorMessage;
-    } catch (e) {
-
-      errorMessage = response.statusText || errorMessage;
-    }
-    throw new Error(errorMessage);
-  }
-
-
-  const data = await response.json();
-  
-
-  if (data.success === false) {
-    throw new Error(data.error || data.message || 'Request failed');
-  }
-  
-
-  return data.data || data;
+// Helper function to get token
+const getAuthHeader = () => {
+  const token = localStorage.getItem('token');
+  return {
+    'Content-Type': 'application/json',
+    ...(token && { 'Authorization': `Bearer ${token}` })
+  };
 };
 
 export const bookingAPI = {
   // Get all bookings
   getAll: async () => {
-    try {
-      const response = await fetch(API_BASE_URL);
-      return await handleResponse(response);
-    } catch (error) {
-      if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
-        throw new Error('Cannot connect to server. Please make sure the backend server is running on port 8080.');
-      }
-      throw error;
+    const response = await fetch(API_BASE_URL, {
+      headers: getAuthHeader()
+    });
+    const data = await response.json();
+    
+    if (!data.success) {
+      throw new Error(data.message || 'Failed to fetch bookings');
     }
+    
+    return data.data;
   },
 
   // Get single booking
   getById: async (id) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/${id}`);
-      return await handleResponse(response);
-    } catch (error) {
-      if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
-        throw new Error('Cannot connect to server. Please make sure the backend server is running on port 8080.');
-      }
-      throw error;
+    const response = await fetch(`${API_BASE_URL}/${id}`, {
+      headers: getAuthHeader()
+    });
+    const data = await response.json();
+    
+    if (!data.success) {
+      throw new Error(data.message || 'Booking not found');
     }
+    
+    return data.data;
   },
 
   // Create booking
   create: async (bookingData) => {
-    try {
-      const response = await fetch(API_BASE_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(bookingData)
-      });
-      return await handleResponse(response);
-    } catch (error) {
-      if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
-        throw new Error('Cannot connect to server. Please make sure the backend server is running on port 8080.');
-      }
-      throw error;
+    const response = await fetch(API_BASE_URL, {
+      method: 'POST',
+      headers: getAuthHeader(),
+      body: JSON.stringify(bookingData)
+    });
+    
+    const data = await response.json();
+    
+    if (!data.success) {
+      throw new Error(data.message || 'Failed to create booking');
     }
+    
+    return data.data;
   },
 
   // Update booking
   update: async (id, bookingData) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/${id}/edit`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(bookingData)
-      });
-      return await handleResponse(response);
-    } catch (error) {
-      if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
-        throw new Error('Cannot connect to server. Please make sure the backend server is running on port 8080.');
-      }
-      throw error;
+    const response = await fetch(`${API_BASE_URL}/${id}/edit`, {
+      method: 'PUT',
+      headers: getAuthHeader(),
+      body: JSON.stringify(bookingData)
+    });
+    
+    const data = await response.json();
+    
+    if (!data.success) {
+      throw new Error(data.message || 'Failed to update booking');
     }
+    
+    return data.data;
   },
 
   // Delete booking
   delete: async (id) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/${id}`, {
-        method: 'DELETE'
-      });
-      return await handleResponse(response);
-    } catch (error) {
-      if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
-        throw new Error('Cannot connect to server. Please make sure the backend server is running on port 8080.');
-      }
-      throw error;
+    const response = await fetch(`${API_BASE_URL}/${id}`, {
+      method: 'DELETE',
+      headers: getAuthHeader()
+    });
+    
+    const data = await response.json();
+    
+    if (!data.success) {
+      throw new Error(data.message || 'Failed to delete booking');
     }
+    
+    return data;
   }
 };
