@@ -74,8 +74,6 @@
 ### Authentication
 ![Authentication](./screenshots/auth.png)
 
-### Dashboard
-![Dashboard](./screenshots/dashboard.png)
 
 ### Booking
 ![Booking](./screenshots/booking.png)
@@ -229,7 +227,7 @@ bookgarnus/
 
 ## 👨‍💻 Developer
 
-**Your Name**  
+**Sudip Khatiwada**  
 Nepal-based Full Stack Developer
 
 - 🌐 Portfolio: [https://sudipkhatiwada.vercel.app/]
