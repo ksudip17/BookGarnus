@@ -1,7 +1,17 @@
 import { Router } from "express";
-import { createBooking, deleteBookingById, getAllBookings, getBookingById, updateBookingById } from "../controllers/bookings.controllers.js";
+import { 
+    createBooking, 
+    deleteBookingById, 
+    getAllBookings, 
+    getBookingById, 
+    updateBookingById } from "../controllers/bookings.controllers.js";
+ import authorize from "../middleware/auth.middleware.js";  
+
+
 
 const bookingRouter = Router();
+
+bookingRouter.use(authorize)
 
 bookingRouter.post("/", createBooking);
 

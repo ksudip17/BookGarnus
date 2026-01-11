@@ -1,35 +1,38 @@
 import mongoose from "mongoose";
 
-const bookingSchema = new mongoose.Schema ({
-    name : {
-        type:String,
-        required: [true, "Name is Required"],
-        trim: true,
-        minLength: 3,
-        maxLength: 50,
+const bookingSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: [true, 'Name is required'],
+      trim: true,
+      minlength: [2, 'Name must be at least 2 characters'],
+      maxlength: [50, 'Name cannot exceed 50 characters']
+    },
+    date: {
+      type: String,
+      required: [true, 'Date is required']
+    },
+    phone: {
+      type: String,
+      trim: true
     },
     email: {
-        type:String,
-        required: [true, 'email is required'],
-        lowercase: true, 
-        unique: true, 
-        match: [/\S+@\S+\.\S+/, 'Please fill a valid email address']
-    } ,
-    date: {
-        type: String,
-        required: [true, 'date is required'],
-    }, 
-    phone: {
-        type : Number,
-        trim: true,
+      type: String,
+      trim: true,
+      lowercase: true
+    },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: [true, 'User is required']
     }
-}, {
+  },
+  {
     timestamps: true
-});
+  }
+);
 
 const Bookings = mongoose.model('Bookings', bookingSchema);
 
 export default Bookings;
-
-
-

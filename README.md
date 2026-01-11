@@ -1,215 +1,255 @@
-# 🗓️ BookGarnus - Booking Management System
+# 🗓️ BookGarnus - Modern Booking Management System
 
-**BookGarnus** (Book + Garnus = "Let's Book" in Nepali) - A full-stack MERN application for managing appointments and bookings. Built by a Nepal-based developer with modern web technologies.
+**BookGarnus** (Book + Garnus = "Let's Book" in Nepali) - A full-stack MERN application for managing appointments and bookings with authentication, search, and modern UI.
 
-![BookGarnus Screenshot](./screenshot.png)
+![BookGarnus Landing Page](./screenshots/landingpage.png)
 
-## 🚀 Features
+---
 
-### Current
-- ✅ Full CRUD operations for bookings
-- ✅ Modern, responsive UI with Tailwind CSS
-- ✅ RESTful API architecture
-- ✅ MongoDB Atlas integration
-- ✅ Clean component structure
-- ✅ Error handling
-- ✅ Professional folder structure with separation of concerns
+## 🚀 Live Demo
 
-### Coming Soon
-- 🔄 Search and filter bookings
-- 🔄 Form validation with error messages
-- 🔄 Toast notifications
-- 🔄 User authentication (JWT)
-- 🔄 Protected routes
-- 🔄 Email notifications
-- 🔄 Deployment (Vercel + Render)
+**🌐 Live Application:** [https://bookgarnus.vercel.app](https://bookgarnus.vercel.app)
+
+**🔗 Backend API:** [https://bookgarnus-api.onrender.com](https://bookgarnus-api.onrender.com)
+
+**📝 Test Credentials:**
+- Email: demo@bookgarnus.com
+- Password: demo123
+
+*(Or create your own account)*
+
+---
+
+## ✨ Features
+
+### User Features
+- 🔐 **Secure Authentication** - JWT-based registration and login
+- ➕ **Create Bookings** - Easy booking creation with form validation
+- 📋 **View Bookings** - See all your appointments in one place
+- ✏️ **Edit Bookings** - Update booking details anytime
+- 🗑️ **Delete Bookings** - Remove bookings with confirmation
+- 🔍 **Search** - Find bookings by name instantly
+- 📅 **Filter by Date** - View bookings for specific dates
+- 🔄 **Sort Options** - Newest, Oldest, or Alphabetically
+- 📱 **Mobile Responsive** - Works perfectly on all devices
+
+### Technical Features
+- 🔒 **Protected Routes** - Dashboard accessible only to authenticated users
+- 🎨 **Modern UI** - Beautiful Tailwind CSS design
+- ⚡ **Fast Performance** - Optimized React components
+- 🌐 **RESTful API** - Clean backend architecture
+- 💾 **MongoDB Atlas** - Cloud database with data persistence
+- 🚀 **Production Deployed** - Live on Vercel and Render
+
+---
 
 ## 🛠️ Tech Stack
 
-**Frontend:**
-- React 18
-- Vite
-- Tailwind CSS
-- Fetch API
+### Frontend
+- **React 18** - Modern UI library
+- **Vite** - Lightning-fast build tool
+- **Tailwind CSS** - Utility-first CSS framework
+- **React Router** - Client-side routing
+- **Context API** - State management
 
-**Backend:**
-- Node.js
-- Express.js
-- MongoDB & Mongoose
-- ES6 Modules
-- dotenv for environment management
+### Backend
+- **Node.js** - JavaScript runtime
+- **Express.js** - Web framework
+- **MongoDB & Mongoose** - Database and ODM
+- **JWT** - Authentication tokens
+- **bcryptjs** - Password hashing
 
-## 📦 Project Structure
+### Deployment
+- **Vercel** - Frontend hosting
+- **Render** - Backend hosting
+- **MongoDB Atlas** - Database hosting
 
-```
-bookgarnus/
-├── booking-system-frontend/    # React frontend
-│   ├── src/
-│   │   ├── components/         # Reusable UI components
-│   │   │   ├── Layout.jsx
-│   │   │   ├── BookingForm.jsx
-│   │   │   ├── BookingList.jsx
-│   │   │   └── BookingItem.jsx
-│   │   ├── services/           # API service layer
-│   │   │   └── api.js
-│   │   ├── App.jsx             # Main application
-│   │   └── main.jsx            # Entry point
-│   ├── tailwind.config.js      # Tailwind configuration
-│   └── package.json
-│
-├── booking-system-backend/     # Express backend
-│   ├── config/                 # Configuration files
-│   │   └── env.js
-│   ├── database/               # Database connection
-│   │   └── mongodb.js
-│   ├── models/                 # Mongoose schemas
-│   │   └── bookings.model.js
-│   ├── controllers/            # Business logic
-│   │   └── bookingController.js
-│   ├── routes/                 # API routes
-│   │   └── bookingRoutes.js
-│   ├── server.js               # Entry point
-│   └── package.json
-│
-└── README.md
-```
+---
+
+## 📸 Screenshots
+
+### Landing Page
+![Landing Page](./screenshots/landingpage.png)
+
+### Authentication
+![Authentication](./screenshots/auth.png)
+
+### Dashboard
+![Dashboard](./screenshots/dashboard.png)
+
+### Booking
+![Booking](./screenshots/booking.png)
+
+### Mobile View
+![Mobile](./screenshots/mobile.jpeg)
+
+---
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js (v18+)
+- Node.js v18+
 - MongoDB Atlas account
 - npm or yarn
 
 ### Installation
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/bookgarnus.git
-   cd bookgarnus
-   ```
-
-2. **Setup Backend**
-   ```bash
-   cd booking-system-backend
-   npm install
-   
-   # Create .env.development file
-   # Add your MongoDB URI and configuration
-   PORT=8080
-   SERVER_URL=http://localhost:8080
-   NODE_ENV=development
-   MONGO_URI=your_mongodb_atlas_uri
-   
-   npm run dev
-   ```
-
-3. **Setup Frontend** (in new terminal)
-   ```bash
-   cd booking-system-frontend
-   npm install
-   npm run dev
-   ```
-
-4. **Open browser**
-   - Frontend: http://localhost:5173
-   - Backend: http://localhost:8080
-
-## 📸 Screenshots
-
-> Screenshots will be added after deployment
-
-## 🎯 API Endpoints
-
-### Bookings
-- `GET /api/bookings` - Get all bookings
-- `GET /api/bookings/:id` - Get single booking by ID
-- `POST /api/bookings` - Create new booking
-- `PUT /api/bookings/:id` - Update existing booking
-- `DELETE /api/bookings/:id` - Delete booking
-
-### Request/Response Format
-
-**Create Booking (POST /api/bookings):**
-```json
-{
-  "name": "John Doe",
-  "email": "john@example.com",
-  "phone": "1234567890",
-  "date": "2026-01-15"
-}
+#### 1. Clone the repository
+```bash
+git clone https://github.com/YOUR_USERNAME/bookgarnus.git
+cd bookgarnus
 ```
 
-**Response:**
-```json
-{
-  "success": true,
-  "message": "Booking created successfully",
-  "data": {
-    "_id": "...",
-    "name": "John Doe",
-    "email": "john@example.com",
-    "phone": "1234567890",
-    "date": "2026-01-15",
-    "createdAt": "2026-01-09T...",
-    "updatedAt": "2026-01-09T..."
-  }
-}
+#### 2. Setup Backend
+```bash
+cd booking-system-backend
+npm install
+
+# Create .env.development
+PORT=8080
+MONGO_URI=your_mongodb_uri
+NODE_ENV=development
+JWT_SECRET=your_jwt_secret
+JWT_EXPIRES_IN=7d
+
+npm run dev
 ```
 
-## 🏗️ Architecture Highlights
+#### 3. Setup Frontend
+```bash
+cd booking-system-frontend
+npm install
 
-- **MVC Pattern**: Clean separation of Models, Controllers, and Routes
-- **API Service Layer**: Centralized API calls in frontend
-- **Component-Based UI**: Reusable React components
-- **Environment-Based Config**: Separate development and production settings
-- **Error Handling**: Comprehensive error handling on both frontend and backend
-- **Modern ES6+**: Using ES6 modules, async/await, arrow functions
+# Create .env
+VITE_API_URL=http://localhost:8080
 
-## 🎯 Roadmap
+npm run dev
+```
 
-- [x] Basic CRUD operations
-- [x] Modern UI with Tailwind CSS
-- [x] MongoDB Atlas integration
-- [x] Professional folder structure
-- [x] RESTful API design
-- [ ] Search & Filter functionality
-- [ ] Frontend form validation
-- [ ] Toast notifications
-- [ ] User authentication (JWT)
-- [ ] Protected routes
-- [ ] Deployment (Vercel + Render)
-- [ ] Email notifications
-- [ ] Analytics dashboard
+#### 4. Open browser
+- Frontend: http://localhost:5173
+- Backend: http://localhost:8080
 
-## 🌟 Why BookGarnus?
+---
 
-**BookGarnus** combines "Book" (English) with "Garnus" (गर्नुहोस् - "Let's do it" in Nepali), representing the ease and enthusiasm of booking appointments. Built with the efficiency of modern web technologies and the spirit of Nepali innovation.
+## 📁 Project Structure
+```
+bookgarnus/
+├── booking-system-frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── LandingPage.jsx
+│   │   │   ├── Login.jsx
+│   │   │   ├── Register.jsx
+│   │   │   ├── Dashboard.jsx
+│   │   │   ├── BookingForm.jsx
+│   │   │   ├── BookingList.jsx
+│   │   │   ├── SearchFilter.jsx
+│   │   │   └── ...
+│   │   ├── context/
+│   │   │   └── AuthContext.jsx
+│   │   ├── services/
+│   │   │   └── api.js
+│   │   └── App.jsx
+│   └── package.json
+│
+├── booking-system-backend/
+│   ├── config/
+│   │   └── env.js
+│   ├── database/
+│   │   └── mongodb.js
+│   ├── models/
+│   │   ├── User.model.js
+│   │   └── bookings.model.js
+│   ├── controllers/
+│   │   ├── authController.js
+│   │   └── bookingController.js
+│   ├── routes/
+│   │   ├── authRoutes.js
+│   │   └── bookingRoutes.js
+│   ├── middleware/
+│   │   ├── auth.js
+│   │   └── errorMiddleware.js
+│   └── server.js
+│
+└── README.md
+```
+
+---
+
+## 🔧 API Endpoints
+
+### Authentication
+- `POST /api/v1/auth/register` - Register new user
+- `POST /api/v1/auth/login` - Login user
+
+### Bookings (Protected)
+- `GET /api/v1/bookings` - Get all user bookings
+- `POST /api/v1/bookings` - Create new booking
+- `GET /api/v1/bookings/:id` - Get single booking
+- `PUT /api/v1/bookings/:id/edit` - Update booking
+- `DELETE /api/v1/bookings/:id` - Delete booking
+
+*All booking routes require `Authorization: Bearer <token>` header*
+
+---
+
+## 🎯 Key Learnings
+
+### What I Built
+- Full-stack application from scratch
+- JWT authentication system
+- RESTful API with proper MVC architecture
+- React Context for state management
+- Protected routes and user-specific data
+- Search and filter functionality
+- Responsive UI with Tailwind CSS
+
+### Challenges Solved
+- Implementing secure authentication
+- Managing user-specific data isolation
+- Handling CORS in production
+- Deploying to multiple platforms
+- Environment variable management
+
+---
+
+## 🌟 Future Enhancements
+
+- [ ] Email notifications for bookings
+- [ ] Calendar view for bookings
+- [ ] Booking reminders
+- [ ] Export bookings to CSV/PDF
+- [ ] Dark mode
+- [ ] Booking categories/tags
+- [ ] Admin dashboard
+- [ ] Analytics and reports
+
+---
 
 ## 👨‍💻 Developer
 
-**Sudip Khatiwada**  
-Nepal-based Full Stack Developer specializing in MERN Stack  
-- Portfolio:  https://sudipkhatiwada.vercel.app/
-- LinkedIn: https://www.linkedin.com/in/sudipkhatiwada/
-- Email: ksudip121@gmail.com
+**Your Name**  
+Nepal-based Full Stack Developer
 
-## 🤝 Contributing
+- 🌐 Portfolio: [https://sudipkhatiwada.vercel.app/]
+- 💼 LinkedIn: [https://www.linkedin.com/in/sudipkhatiwada/]
+- 📧 Email: ksudip121@gmail.com
 
-Contributions, issues, and feature requests are welcome!
+---
 
 ## 📝 License
 
 MIT License - feel free to use this project for learning!
 
+---
+
 ## 🙏 Acknowledgments
 
-- Built as part of learning full-stack web development
-- Inspired by the need for simple, efficient booking management solutions
-- Thanks to the MERN stack community
+- Built as a portfolio project demonstrating full-stack development skills
+- Inspired by the need for simple, effective booking management solutions
+- Special thanks to the MERN stack community
 
----
 
-**BookGarnus** -  book गर्नुहोस्,  organizeग र्नुहोस्, succeed गर्नुहोस्! 🗓️✨
 
----
+
